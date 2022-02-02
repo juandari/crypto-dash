@@ -16,15 +16,17 @@ function MarketFilter({
 }: MarketFilterProps) {
   return (
     <div className="w-full py-2 relative">
-      <div>{children}</div>
-      <div className="w-[190px]">
+      <div className="flex overflow-x-auto scrollbar-hide gap-2 w-full sm:w-[74%]">
+        {children}
+      </div>
+      <div className="w-full sm:w-[190px] sm:absolute sm:top-2 sm:right-0 mt-4 sm:mt-0">
         <div className="relative">
           <IconSearch className="absolute left-3 top-2 text-gray-500 w-5 h-5" />
           <input
             onChange={handleChange}
             value={value}
             placeholder={placeholder}
-            className="rounded-sm border border-gray-300 pl-10 w-full py-1 pr-2"
+            className="rounded-md border border-gray-300 pl-10 w-full py-1 pr-2"
           />
         </div>
       </div>
