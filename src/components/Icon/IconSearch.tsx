@@ -1,8 +1,5 @@
 import React from 'react'
-
-export type IconProps = {
-  className?: string
-}
+import { IconProps } from './types'
 
 function IconSearch({ className }: IconProps) {
   return (
