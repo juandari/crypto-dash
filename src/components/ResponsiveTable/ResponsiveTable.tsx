@@ -12,6 +12,7 @@ export type Data = {
   dayChange: string
   marketCap: string
   volume: string
+  tags?: string[]
 }
 
 const DEFAULT_LOGO = 'https://bitcoin.org/img/icons/opengraph.png?1643058474'

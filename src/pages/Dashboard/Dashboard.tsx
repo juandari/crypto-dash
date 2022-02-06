@@ -24,6 +24,7 @@ const Dashboard: NextPage = () => {
     isError: isErrorTicker,
   } = useTicker()
   const [activeTag, setActiveTag] = useState('all')
+  const [searchValue, setSearchValue] = useState('')
 
   if (isErrorAssets || isErrorTicker) toast.error('Error retrieving data')
 
@@ -68,15 +69,26 @@ const Dashboard: NextPage = () => {
     ) as TableData[]
   }, [assets?.data, usdtTicker])
 
+  const filteredTableDataByTag = useMemo(() => {
+    if (activeTag === 'all') return tableData
+    return tableData.filter((item) => item.tags?.includes(activeTag))
+  }, [activeTag, tableData])
+
+  const finalTableData = useMemo(() => {
+    return filteredTableDataByTag?.filter((item) =>
+      item?.name?.toLocaleLowerCase().includes(searchValue)
+    )
+  }, [filteredTableDataByTag, searchValue])
+
   const dataChunks = useMemo(() => {
     const chunks = []
 
-    for (let i = 0; i < tableData?.length; i = i + PAGE_LIMIT) {
-      const tempArr = tableData?.slice(i, i + PAGE_LIMIT)
+    for (let i = 0; i < finalTableData?.length; i = i + PAGE_LIMIT) {
+      const tempArr = finalTableData?.slice(i, i + PAGE_LIMIT)
       chunks.push(tempArr)
     }
     return chunks
-  }, [tableData])
+  }, [finalTableData])
 
   const [activePage, setActivePage] = useState(0)
   const [data, setData] = useState(dataChunks[activePage])
@@ -109,13 +121,19 @@ const Dashboard: NextPage = () => {
 
   const handlePageClick = (selectedItem: { selected: number }) => {
     setActivePage(selectedItem.selected)
-    setData(dataChunks[selectedItem.selected])
   }
-  console.log(data, 'data')
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value)
+  }
 
   return (
     <div>
-      <MarketFilter placeholder="Search Coin Name">
+      <MarketFilter
+        value={searchValue}
+        onChange={handleSearch}
+        placeholder="Search Coin Name"
+      >
         {isLoadingAssets ? <Spinner /> : renderButton()}
       </MarketFilter>
       <div className="mt-4">

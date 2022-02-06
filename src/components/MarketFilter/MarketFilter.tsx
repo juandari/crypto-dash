@@ -4,14 +4,14 @@ import React from 'react'
 export type MarketFilterProps = {
   children?: React.ReactNode
   value?: string
-  handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
   placeholder?: string
 }
 
 function MarketFilter({
   children,
   value,
-  handleChange,
+  onChange,
   placeholder,
 }: MarketFilterProps) {
   return (
@@ -23,7 +23,7 @@ function MarketFilter({
         <div className="relative">
           <IconSearch className="absolute left-3 top-2 text-gray-500 w-5 h-5" />
           <input
-            onChange={handleChange}
+            onChange={onChange}
             value={value}
             placeholder={placeholder}
             className="rounded-md border border-gray-300 pl-10 w-full py-1 pr-2"
