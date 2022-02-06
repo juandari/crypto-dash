@@ -1,4 +1,4 @@
-This is a Crypto Dashboard app called Crypto Dash. You can this [`link`]('google.com')
+This is a Crypto Dashboard app called Crypto Dash. Go to https://crypto-dash-opal.vercel.app/ to see the deployed version:
 
 ## Getting Started
 
