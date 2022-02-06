@@ -5,36 +5,22 @@ import React from 'react'
 import { formatCurrency } from '@utils/formatter'
 
 export type Data = {
-  ticker: string
+  logo: string
   name: string
+  ticker: string
   price: string
   dayChange: string
   marketCap: string
   volume: string
 }
 
-const data = [
-  {
-    ticker: 'BTC',
-    name: 'Bitcoin',
-    logo: 'https://bitcoin.org/img/icons/opengraph.png?1643058474',
-    price: '10000',
-    dayChange: '229',
-    marketCap: '9210000',
-    volume: '10000',
-  },
-  {
-    ticker: 'ETH',
-    name: 'Ethereum',
-    logo: 'https://bitcoin.org/img/icons/opengraph.png?1643058474',
-    price: '1000',
-    dayChange: '-22',
-    marketCap: '900000',
-    volume: '10000',
-  },
-]
+const DEFAULT_LOGO = 'https://bitcoin.org/img/icons/opengraph.png?1643058474'
 
-function ResponsiveTable() {
+export type TableProps = {
+  data?: Data[]
+}
+
+function ResponsiveTable({ data }: TableProps) {
   return (
     <>
       {/* LARGE SCREEN */}
@@ -59,11 +45,16 @@ function ResponsiveTable() {
         </div>
 
         {/* DATA */}
-        {data.map((item) => (
+        {data?.map((item) => (
           <div key={item.ticker} className="flex px-[16px] py-[12px]">
             {/* First Col */}
             <div className="w-[220px] flex gap-3 items-center">
-              <Image src={item.logo} alt={item.name} height={30} width={30} />
+              <Image
+                src={DEFAULT_LOGO}
+                alt={item.ticker}
+                height={30}
+                width={30}
+              />
               <div className="flex flex-col">
                 <span>{item.ticker}</span>
                 <span className="text-xs text-gray-500">{item.name}</span>
@@ -116,14 +107,19 @@ function ResponsiveTable() {
         </div>
 
         {/* DATA */}
-        {data.map((item) => (
+        {data?.map((item) => (
           <div
             key={item.ticker}
             className="flex justify-between px-[16px] py-3"
           >
             {/* First Col */}
             <div className="flex gap-3 items-center w-1/3">
-              <Image src={item.logo} alt={item.name} height={30} width={30} />
+              <Image
+                src={DEFAULT_LOGO}
+                alt={item.ticker}
+                height={30}
+                width={30}
+              />
               <div className="flex flex-col">
                 <span>{item.ticker}</span>
                 <span className="text-xs text-gray-500">{item.name}</span>

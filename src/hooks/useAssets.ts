@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query'
 
-type CryptoCurrencyAsset = {
+export type CryptoCurrencyAsset = {
   id: string
   assetCode: string
   assetName: string

@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['https://bin.bnbstatic.com', 'bitcoin.org'],
+    domains: ['bin.bnbstatic.com', 'ex.bnbstatic.com', 'bitcoin.org'],
   },
 }
 

@@ -7,6 +7,7 @@ export type Ticker = {
   prevClosePrice: string
   lastPrice: string
   volume: string
+  quoteVolume: string
 }
 export type Response = Ticker[]
 
@@ -17,7 +18,9 @@ const fetchTicker = async () => {
 }
 
 const useTicker = () => {
-  return useQuery('ticker', () => fetchTicker())
+  return useQuery('ticker', () => fetchTicker(), {
+    refetchInterval: 5000,
+  })
 }
 
 export { useTicker, fetchTicker }
